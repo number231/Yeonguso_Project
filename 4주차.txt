@@ -17,7 +17,7 @@ class pomulsun_gurigi:
         ax = fig.add_subplot(1,1,1) #1행 1열의 1번째 그래프
         x = list()
         y = list()
-        while self.t >= 0:
+        while True:
           ab = self.v_x * self.t
           cd = self.v_y * self.t + self.y_start - 0.5 * self.g * self.t **2
           x.append(ab)
