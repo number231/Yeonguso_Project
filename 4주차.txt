@@ -1,0 +1,36 @@
+#4주차 - 분산형 그래프와 추세선의 추가 및 위의 내용 통합
+
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+class pomulsun_gurigi:    
+    def __init__(self, v_start, angle, y_start = 0):#v_start = 시작 속도, angle = 발사 각도, y_start = 발사 높이, 미입력시 0)
+        self.v_start = float(v_start) #단위 : m/s
+        self.r_ang = float(math.radians(angle)) #단위 : rad
+        self.y_start = float(y_start) #단위: m
+        self.v_y = self.v_start * math.sin(self.r_ang)
+        self.v_x = self.v_start * math.cos(self.r_ang)
+        self.t = 0
+        self.g = 9.80665
+    def draw(self):
+        fig = plt.figure()
+        ax = fig.add_subplot(1,1,1) #1행 1열의 1번째 그래프
+        x = list()
+        y = list()
+        while self.t >= 0:
+          ab = self.v_x * self.t
+          cd = self.v_y * self.t + self.y_start - 0.5 * self.g * self.t **2
+          x.append(ab)
+          y.append(cd)
+          self.t += 0.02
+          if cd < 0:
+            break
+        ax.scatter(x, y, marker='.', color='R')
+        fig = plt.figure()
+        ax.plot(x, y, color = 'teal')
+        print('도달 거리는 약', round(self.t*self.v_x,2), 'm입니다')
+        print('도달하는데 걸린 시간은 약',round(self.t,2), '초입니다')
+        print('최고 도달 높이는 약', round(self.v_y ** 2 / 2 / self.g , 2), 'm입니다')
+        plt.show()
+pg = pomulsun_gurigi(float(input( '시작 속도(m/s): ')),float(input('발사 각도( °): ')), float(input('발사 높이( m ): ')))
+pg.draw()`

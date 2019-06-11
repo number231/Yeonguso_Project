@@ -1,0 +1,15 @@
+# 위의 MVP를 클래스 형식으로 변형함
+
+import math
+class pomulsun:
+    g = 9.80665
+    def __init__(self, velocity_start, angle, y_start = 0):#velocity_start = 시작 속도, angle = 발사 각도, y_start = 발사 높이, 미입력시 0)
+        self.v_start = float(velocity_start) #단위 : m/s
+        self.r_angle = float(math.radians(angle)) #단위 : rad
+        self.y_start = float(y_start) #단위: m
+        self.v_y = self.v_start * math.sin(self.r_angle)
+        self.v_x = self.v_start * math.cos(self.r_angle)
+    def bottom_arrival_time(self):
+        return 2 * self.v_y / g + math.sqrt(2 * self.v_start / g)
+    def y_axis_arrival_dist(self):
+        return self.v_x * 2 * self.v_y / g + math.sqrt(2 * self.v_start / g)`

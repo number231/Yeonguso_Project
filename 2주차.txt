@@ -1,0 +1,19 @@
+#2주차 MVP - 포물선의 기본적인 입력값들 및 출력값들 알아보기
+
+import math #사인함수 호출용
+
+velocity1 = float(input('물체의 발사 속도를 입력하세요(단위: m/s) '))
+y_start = float(input('물체의 초기 높이를 정해주세요(단위:m, 바닥의 높이는 0이라고 가정) '))
+'''if y_start < 0:
+    print('ValueError: height cannot be smaller than 0')'''
+angle = float(input('물체의 발사 각도를 정해주세요(단위: 도) '))
+rad_angle = math.radians(angle) #기본값 지정
+g = 9.80665
+
+sin_angle = math.sin(rad_angle)
+cos_angle = math.cos(rad_angle)
+v_x = velocity1 * cos_angle #초기 x축방향 속도
+v_y = velocity1 * sin_angle #초기 y축방향 속도
+t = 2 * v_y / g + math.sqrt(2 * y_start / g) #바닥도달속도
+y_final = 2 * v_x * v_y / g +   # y축도달거리
+print('물체가 바닥에 떨어지는 시간:', t, 's')
